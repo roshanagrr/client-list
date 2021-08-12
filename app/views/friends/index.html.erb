@@ -1,0 +1,35 @@
+<% if user_signed_in?%>
+<h1>Clients</h1>
+
+<table class="table  table table-striped table table-hover table table-bordered table">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Twitter</th>
+      <th>Operation</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @friends.each do |friend| %>
+      <tr>
+        <td><%= link_to friend.first_name+' '+friend.last_name, friend%></td>
+        <td><%= friend.email %></td>
+        <td><%= friend.phone %></td>
+        <td><%= friend.twitter %></td>
+        <td><%= link_to 'Delete',friend,class:"btn btn-outline-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add Friend', new_friend_path, class: "btn btn-secondary" %>
+<% else %>
+<h1>Hello World!</h1>
+<p>This is webpage which list the details of my clients</p>
+
+<% end %>
